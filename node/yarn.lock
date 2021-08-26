@@ -1319,10 +1319,10 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@vtex/api@6.40.0":
-  version "6.40.0"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.40.0.tgz#830c4aaaad75a1a8cf86ce898010e081a89053f8"
-  integrity sha512-VDdg9KVoNQ6KxH6cM0Tgh+VF7ELLrORqk5lRaie4akUZXW2tqECFLZAvRi9UE29CLstqCLBGQjqxbuT1aj/mgQ==
+"@vtex/api@6.45.0":
+  version "6.45.0"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.0.tgz#6f7de4b5e2f2a86cc8251125cc2d77de96611951"
+  integrity sha512-F5mZLq/x8RrCXl6Qj+gJsqsyM1DGicxggZplitY3NOewn0vGXtz7TR2r/zY3v+9nQp+ksQzax7Vqf9em+78GxA==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
@@ -1331,7 +1331,7 @@
     agentkeepalive "^4.0.2"
     apollo-server-errors "^2.2.1"
     archiver "^3.0.0"
-    axios "^0.19.2"
+    axios "^0.21.1"
     axios-retry "^3.1.2"
     bluebird "^3.5.4"
     chalk "^2.4.2"
@@ -1361,6 +1361,7 @@
     semver "^5.5.1"
     stats-lite vtex/node-stats-lite#dist
     tar-fs "^2.0.0"
+    tokenbucket "^0.3.2"
     uuid "^3.3.3"
     xss "^1.0.6"
 
@@ -1818,12 +1819,12 @@ axios@^0.19.0:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
 
-axios@^0.19.2:
-  version "0.19.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
-  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
-    follow-redirects "1.5.10"
+    follow-redirects "^1.10.0"
 
 babel-jest@^24.4.0, babel-jest@^24.9.0:
   version "24.9.0"
@@ -1919,6 +1920,11 @@ bl@^3.0.0:
   integrity sha512-EUAyP5UHU5hxF8BPT0LKW8gjYLhq1DQIcneOX/pL/m2Alo+OYDQAJlHq+yseMP50Os2nHXOSic6Ss3vSQeyf4A==
   dependencies:
     readable-stream "^3.0.1"
+
+bluebird@2.9.24:
+  version "2.9.24"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.9.24.tgz#14a2e75f0548323dc35aa440d92007ca154e967c"
+  integrity sha1-FKLnXwVIMj3DWqRA2SAHyhVOlnw=
 
 bluebird@^3.5.4:
   version "3.5.5"
@@ -3036,6 +3042,11 @@ follow-redirects@1.5.10:
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
     debug "=3.1.0"
+
+follow-redirects@^1.10.0:
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.2.tgz#cecb825047c00f5e66b142f90fed4f515dec789b"
+  integrity sha512-yLR6WaE2lbF0x4K2qE2p9PEXKLDjUjnR/xmjS3wHAYxtlsI9MLLBJUZirAHKzUZDGLxje7w/cXR49WOUo4rbsA==
 
 follow-redirects@^1.3.0:
   version "1.7.0"
@@ -5520,6 +5531,11 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
+redis@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/redis/-/redis-0.12.1.tgz#64df76ad0fc8acebaebd2a0645e8a48fac49185e"
+  integrity sha1-ZN92rQ/IrOuuvSoGReikj6xJGF4=
+
 regenerate-unicode-properties@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/regenerate-unicode-properties/-/regenerate-unicode-properties-8.1.0.tgz#ef51e0f0ea4ad424b77bf7cb41f3e015c70a3f0e"
@@ -6016,7 +6032,7 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-"stats-lite@github:vtex/node-stats-lite#dist":
+stats-lite@vtex/node-stats-lite#dist:
   version "2.2.0"
   resolved "https://codeload.github.com/vtex/node-stats-lite/tar.gz/1b0d39cc41ef7aaecfd541191f877887a2044797"
   dependencies:
@@ -6319,6 +6335,14 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
+tokenbucket@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/tokenbucket/-/tokenbucket-0.3.2.tgz#8172b2b58e3083acc8d914426fed15162a3a8e90"
+  integrity sha1-gXKytY4wg6zI2RRCb+0VFio6jpA=
+  dependencies:
+    bluebird "2.9.24"
+    redis "^0.12.1"
+
 tough-cookie@^2.3.3, tough-cookie@^2.3.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
@@ -6587,17 +6611,21 @@ verror@1.10.0:
   version "0.4.4"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles#8c45c6decf9acd2b944e07261686decff93d6422"
 
-"vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.9.7/public/@types/vtex.product-context":
-  version "0.9.7"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.9.7/public/@types/vtex.product-context#4024c589f1ba318e92219a88bf18b4e3774dc85c"
+"vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context":
+  version "0.10.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context#c5e2a97b404004681ee12f4fff7e6b62157786cc"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.42.0/public/@types/vtex.render-runtime":
-  version "7.42.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.42.0/public/@types/vtex.render-runtime#b76f76d8f763385cfc57452386bbd20ab6fe9e9b"
+"vtex.questions-and-answers@https://qna--acctglobal.myvtex.com/_v/private/typings/linked/v1/vtex.questions-and-answers@0.0.2+build1630002640/public/@types/vtex.questions-and-answers":
+  version "0.0.2"
+  resolved "https://qna--acctglobal.myvtex.com/_v/private/typings/linked/v1/vtex.questions-and-answers@0.0.2+build1630002640/public/@types/vtex.questions-and-answers#9da90d9a31995605a41477e4354e3f8e786803f3"
 
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.1/public/@types/vtex.styleguide":
-  version "9.134.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.1/public/@types/vtex.styleguide#7210ed4908f4e6482d2499d71c4cfcc21e3dfd6a"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.44.0/public/@types/vtex.render-runtime":
+  version "7.44.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.44.0/public/@types/vtex.render-runtime#90daef60e43dfcfc45ecba5cf5b97de856b9464f"
+
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.0/public/@types/vtex.styleguide":
+  version "9.145.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.0/public/@types/vtex.styleguide#41dfb32af8756eb5528dbd452e47003a8f67fe8c"
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"

@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, useContext, useState, useEffect } from 'react'
 import { compose, graphql, useMutation, useLazyQuery } from 'react-apollo'
-import { injectIntl } from 'react-intl'
-import { FormattedMessage } from 'react-intl'
+import { injectIntl, FormattedMessage } from 'react-intl'
 import { ProductContext } from 'vtex.product-context'
 import {
   Button,
@@ -28,7 +29,6 @@ import QUERY_GET_QUESTIONS from './queries/getQuestions.gql'
 import SEARCH_QUESTIONS from './queries/searchQuestions.gql'
 import storageFactory from './utils/storage'
 import styles from './qnastyle.css'
-import { settings } from 'cluster'
 
 const CSS_HANDLES = ['formContainer', 'questionsList', 'thumbsIcon'] as const
 let timeout: any = null
@@ -114,10 +114,10 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
         id: questionRes.addQuestion,
         anonymous: anonymousCheck,
         votes: 0,
-        allowed: true
+        allowed: true,
       })
       setState({ ...state, questionList: newQuestionList })
-    }
+    },
   })
 
   const [
@@ -125,13 +125,13 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
     { loading: ansLoading, called: answerCalled, error: answerError },
   ] = useMutation(ADD_ANSWER, {
     onCompleted: (answerRes) => {
-      console.log("answerRes =>", answerRes)
-      const newQuestionList = questionList.map((q:any) => {
+      console.log('answerRes =>', answerRes)
+      const newQuestionList = questionList.map((q: any) => {
         if (q.id === currentQuestion.id) {
           if (!q.answers) {
             q.answers = []
           }
-          console.log("q.id =>", q.id)
+          console.log('q.id =>', q.id)
           q.answers.push({
             name,
             email,
@@ -140,7 +140,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
             anonymous: answerAnonymousCheck,
             votes: 0,
             allowed: true,
-            questionId: q.id
+            questionId: q.id,
           })
         }
 
@@ -148,7 +148,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
       })
 
       setState({ ...state, questionList: newQuestionList })
-    }
+    },
   })
 
   const [voteQuestion] = useMutation(VOTE_QUESTION, {
@@ -178,7 +178,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
 
   const [searchQuestions] = useLazyQuery(SEARCH_QUESTIONS, {
     onCompleted: (res: any) => {
-      if (res && res.search.length && res.search !== questionList) {
+      if (res?.search.length && res.search !== questionList) {
         setState({ ...state, questionList: res.search })
       }
     },
@@ -207,6 +207,8 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
     return false
   }
 
+  const { product } = useContext(ProductContext) as any
+
   const handleSearch = (e: any) => {
     const { value } = e.target
     setState({ ...state, search: value })
@@ -215,7 +217,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
       searchQuestions({
         variables: {
           keyword: value,
-          productId: product.productId
+          productId: product.productId,
         },
       })
     }, 1000)
@@ -229,13 +231,14 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
     const newQuestionList = questionsData.questions.filter(
       (_: any, index: any) => {
         return index < 3
-      })
+      }
+    )
 
-      setState({
+    setState({
       ...state,
       search: '',
       showAllQuestions: false,
-      questionList: newQuestionList
+      questionList: newQuestionList,
     })
   }
 
@@ -244,7 +247,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
   const createAnswerArray = (q: any) => {
     if (showAllAnswers[q.id]) {
       answerArray = q.answers
-    } else if (q.answers) {
+    } else if (q.answers && q.answers.length > 0) {
       const sortedAnswers = q.answers.reduce((prev: any, current: any) =>
         prev.votes > current.votes ? prev : current
       )
@@ -271,8 +274,6 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
       return b.votes - a.votes
     })
   }
-
-  const { product } = useContext(ProductContext) as any
 
   if (!addLoading && questionCalled && !questionError && isModalOpen) {
     setState({ ...state, isModalOpen: false })
@@ -349,6 +350,15 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
       {!loadingQuestions && !!questionList?.length && (
         <div className={handles.questionsList}>
           {questionList.map((row: any) => {
+            if (row.answers && row.answers.length > 0) {
+              const filterAnswers = row.answers.filter(
+                (auxAnswer: { allowed: any }) => {
+                  return auxAnswer.allowed
+                }
+              )
+              row.answers = filterAnswers
+            }
+
             return (
               <div key={row.id} className={styles['votes-question-container']}>
                 <div className={styles.votes}>
@@ -520,7 +530,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
                           }}
                         />{' '}
                         {!showAllAnswers[row.id] &&
-                          `(${  row.answers?.length - 1  })`}
+                          `(${row.answers?.length - 1})`}
                       </Button>
                     </div>
                   )}
@@ -628,7 +638,10 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
                             className={styles['submit-answer-button']}
                             isLoading={ansLoading}
                             onClick={() => {
-                              console.log("current question =>", currentQuestion)
+                              console.log(
+                                'current question =>',
+                                currentQuestion
+                              )
                               addAnswer({
                                 variables: {
                                   questionId: currentQuestion.id,
@@ -636,7 +649,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
                                   name,
                                   email,
                                   anonymous: answerAnonymousCheck,
-                                  allowed: !config.moderation
+                                  allowed: !config.moderation,
                                 },
                               })
                             }}
@@ -847,7 +860,7 @@ const QuestionsAndAnswers: FC<any> = ({ data: { config }, intl }) => {
                       name,
                       email,
                       anonymous: anonymousCheck,
-                      allowed: !config.moderation
+                      allowed: !config.moderation,
                     },
                   })
                 }}
